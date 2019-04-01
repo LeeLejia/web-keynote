@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/webview/index.ts"],"names":[],"mappings":";;AACA,qEAAiE;AAEjE,SAAgB,IAAI,CAAC,OAAgC;IACnD,+CAAsB,CAAC,UAAU,CAAC,OAAO,CAAC,CAAA;IAC1C,OAAO,CAAC,WAAW,CAAC,MAAM,CAAC,wBAAwB,EAAE,+CAAsB,CAAC,CAAA;IAC5E,OAAO,CAAC,aAAa,CAAC,IAAI,CACxB,+CAAsB,CACvB,CAAA;AACH,CAAC;AAND,oBAMC"}
