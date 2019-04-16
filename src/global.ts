@@ -2,7 +2,7 @@ declare namespace WebKeyNote {
   
   type GlobalState = {
     sectionProvider: { setData: (treeData: WebKeyNote.Section[]) => void },
-    sectionPreviewProvider: { preview: (section: WebKeyNote.Section) => (Promise<void>)}
+    previewProvider: { preview: (section: WebKeyNote.Section) => (Promise<void>)}
   }
 
   export const enum Command {
@@ -15,17 +15,33 @@ declare namespace WebKeyNote {
 
   interface Doc {
     title: string,
-    text: string,
-    describe?: string,
-    createdAt?: number,
-    LastModifyAt?: number,
-    getSections(): WebKeyNote.Section[]
+    getSections(): WebKeyNote.Section[],
+    renderHTML(): string
   }
   interface Section {
     title: string,
     text: string,
     index: number,
-    describe?: string
+    describe?: string,
+    renderHTML(): string
+  }
+
+  type Attribute = { key: string, type: TokenType | 'ClassList', val: string | number | boolean | string[] }
+  type Node = {
+    name: string,
+    classList: string[],
+    attributes: Attribute[],
+    childNodes: Node[]
+  }
+
+  export const enum TokenType {
+    Brace = 'Brace',
+    Number = 'Number',
+    String = 'String',
+    Boolean = 'Boolean',
+    Symbol = 'Symbol',
+    Keyword = 'Keyword',
+    Annotation = 'Annotation'
   }
 }
 

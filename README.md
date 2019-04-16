@@ -1,65 +1,47 @@
 # WebKeyNote README
 
-用简洁的代码写出漂亮的幻灯片！
+来吧，用代码写PPT！
+
+*请暂时不要下载安装，该插件尚未完成！*
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 为什么要用代码写PPT呢？
 
-For example if there is an image subfolder under your extension project workspace:
+- 源代码最终被编译成html,css,js。Web应用有很好的视觉表现力
 
-![feature X](images/feature-x.png)
+- 用*coding*的方式写代码可以让我们忽略PPT制作过程中一些无关紧要的细节，直接使用或者定义样式模版
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- 代码更容易维护和分享
+
+![cat](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSilYeXbDB8R5pHwhYGu4OIy_cB7pEavNJafJSC-tDeqfuk-Ig)
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+> 项目只在*chorme*上进行过测试。如果存在其它浏览器的兼容性问题将不准备解决。
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+> None
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 1.0.3
 
-### 1.0.0
+> 测试发布
 
-Initial release of ...
+- #### Todo
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
+  - 添加 klang 文件图标
+  - 解决代码高亮发布不可用
+  - 提供语法上的代码提示
+  - 本地发布
+  - 在线发布
+  - 更详细的编译错误
 
 ### For more information
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+> 项目完善中,适时将开源。问题或建议请发邮件到*1436983000@qq.com*，感谢！🙏
 
 **Enjoy!**

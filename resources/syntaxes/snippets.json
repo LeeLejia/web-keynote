@@ -1,0 +1,35 @@
+{
+	"section": {
+		"prefix": ["section"],
+		"description": "新建页面",
+		"body": [
+			"section\t$1{",
+			"\ttitle: \"$2\"",	
+			"\tdescribe: \"$3\"",	
+			"\tbackground: \"$4\"",
+			"\t$5",
+			"}"
+		]
+	},
+	"text": {
+		"description": "添加文本节点",
+		"prefix": ["text"],
+		"body": [
+			"text\t{",
+			"\ttype: \"${1|p,h1,h2,h3,h4,h5,h6|}\"",	
+			"\tcontent: \"$2\"",	
+			"}"
+		]
+	},
+	"list": {
+		"prefix": "list",
+		"body": [
+			"list\t{",
+			"\tbackground: {",
+			"",
+			"",
+			""
+		],
+		"description": "创建文本"
+	}
+}

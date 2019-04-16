@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
-import { sectionPreviewProvider } from './sectionPreviewProvider'
+import { previewProvider } from './previewProvider'
 
 export function init(context: vscode.ExtensionContext) {
-  sectionPreviewProvider.initialize(context)
-  context.globalState.update('sectionPreviewProvider', sectionPreviewProvider)
+  previewProvider.initialize(context)
+  context.globalState.update('previewProvider', previewProvider)
   context.subscriptions.push(
-    sectionPreviewProvider
+    previewProvider
   )
 }

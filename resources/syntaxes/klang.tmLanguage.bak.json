@@ -1,0 +1,238 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "klang",
+	"patterns": [
+		{
+			"include": "#string"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#section"
+		},
+		{
+			"include": "#error"
+		}
+	],
+	"repository": {
+		"error": {
+			"name": "klang.error",
+			"patterns":  [
+				{
+					"match": "[\\.\\w]*"
+				}
+			]
+		},
+		"attribute": {
+			"comment": "节点属性",
+			"patterns": [
+				{
+					"begin": "\\.([a-z_]+)",
+					"end": "",
+					"name": "klang.attribute"
+				}
+			]
+		},
+		"node-key": {
+			"comment": "节点成员",
+			"begin": "^\\s*([a-z]+)\\s*:\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "klang.node-key"
+				}
+			},
+			"end": "",
+			"patterns": []
+		},
+		"node-value": {
+			"comment": "节点成员值",
+			"begin": "\\s*[a-z]+\\s*:",
+			"end": "\n|\\}",
+			"patterns": []
+		},
+		"section": {
+			"comment": "页面root",
+			"begin": "\\b^(section)",
+			"end": "\\}",
+			"beginCaptures": {
+				"1": {
+					"name": "klang.section"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "klang.punctuation"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"match": "\\{",
+					"name": "klang.punctuation"
+				},
+				{
+					"include": "#node-key"
+				},
+				{
+					"include": "#attribute"
+				},
+				{
+					"include": "#section-node"
+				},
+				{
+					"include": "#html-node"
+				},
+				{
+					"include": "#style-node"
+				}
+			]
+		},
+		"section-node": {
+			"comment": "页面节点",
+			"begin": "^\\s*(text|list|img)\\s*",
+			"end": "\\}",
+			"beginCaptures": {
+				"1": {
+					"name": "klang.section-node"
+				},
+				"2": {
+					"name": "klang.punctuation"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "klang.punctuation"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"match": "\\{",
+					"name": "klang.punctuation"
+				},
+				{
+					"include": "#node-key"
+				},
+				{
+					"include": "#attribute"
+				},
+				{
+					"include": "#section-node"
+				},
+				{
+					"include": "#html-node"
+				},
+				{
+					"include": "#style-node"
+				}
+			]
+		},
+		"html-node": {
+			"comment": "html节点",
+			"begin": "^\\s*(innerHtml)\\s*",
+			"end": "\\}",
+			"beginCaptures": {
+				"1": {
+					"name": "klang.inner-node-key"
+				},
+				"2": {
+					"name": "klang.punctuation"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "klang.punctuation"
+				}
+			},
+			"patterns": [
+				{
+					"match": "\\{",
+					"name": "klang.punctuation"
+				}
+			]
+		},
+		"style-node": {
+			"comment": "css节点",
+			"begin": "^\\s*(innerStyle)\\s*",
+			"end": "\\}",
+			"beginCaptures": {
+				"1": {
+					"name": "klang.inner-node-key"
+				},
+				"2": {
+					"name": "klang.punctuation"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "klang.punctuation"
+				}
+			},
+			"patterns": [
+				{
+					"match": "\\{",
+					"name": "klang.punctuation"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": "^\\s*/\\*\\*(?!/)",
+					"captures": {
+						"0": {
+							"name": "klang.comments"
+						}
+					},
+					"end": "^\\s*\\*/",
+					"name": "klang.comments"
+				},
+				{
+					"begin": "^\\s*/\\*",
+					"captures": {
+						"0": {
+							"name": "klang.comments"
+						}
+					},
+					"end": "^\\s*\\*/",
+					"name": "klang.comments"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "klang.comments"
+						}
+					},
+					"match": "^\\s*(//).*$\\n?",
+					"name": "klang.comments"
+				}
+			]
+		},
+		"string": {
+			"begin": "(\")",
+			"beginCaptures": {
+				"0": {
+					"name": "klang.string.quo"
+				}
+			},
+			"end": "(\")",
+			"endCaptures": {
+				"0": {
+					"name": "klang.string.quo"
+				}
+			},
+			"name": "klang.string",
+			"patterns": [
+				{
+					"include": ".*"
+				}
+			]
+		}
+	},
+	"scopeName": "source.klang"
+}

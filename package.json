@@ -1,17 +1,26 @@
 {
-	"name": "WebKeyNote",
-	"displayName": "WebKeyNote",
+	"name": "web-keynote",
+	"displayName": "keynote",
 	"description": "make slide by coding.",
-	"version": "0.0.1",
+	"version": "1.0.3",
+	"author": "1436983000@qq.com",
+	"publisher": "leelejia",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:LeeLejia/web-keynote.git"
+	},
 	"engines": {
 		"vscode": "^1.32.0"
 	},
 	"categories": [
 		"Other",
-		"Snippets"
+		"Snippets",
+		"Programming Languages",
+		"Themes"
 	],
 	"keywords": [
-		"WebKeyNote",
+		"keynote",
 		"ppt",
 		"idea"
 	],
@@ -22,8 +31,7 @@
 		"onCommand:extension.open_doc_editor",
 		"onCommand:extension.open_section_editor",
 		"onView:WebKeyNote_current_doc",
-		"onView:WebKeyNote_doc_template",
-		"onView:WebKeyNote_doc_dir"
+		"onView:WebKeyNote_doc_template"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -32,19 +40,23 @@
 				"command": "extension.WebKeyNote",
 				"category": "WebKeyNote",
 				"title": "新建幻灯片"
-			},{
+			},
+			{
 				"command": "extension.open_doc",
 				"category": "WebKeyNote",
 				"title": "open doc"
-			},{
+			},
+			{
 				"command": "extension.open_section",
 				"category": "WebKeyNote",
 				"title": "open section"
-			},{
+			},
+			{
 				"command": "extension.open_doc_editor",
 				"category": "WebKeyNote",
 				"title": "edit doc"
-			},{
+			},
+			{
 				"command": "extension.open_section_editor",
 				"category": "WebKeyNote",
 				"title": "edit section"
@@ -66,15 +78,43 @@
 					"name": "当前文档"
 				},
 				{
-					"id": "WebKeyNote_doc_dir",
-					"name": "工作目录"
-				},
-				{
 					"id": "WebKeyNote_doc_template",
 					"name": "页面模版"
 				}
 			]
-		}
+		},
+		"themes": [
+			{
+				"label": "klang",
+				"uiTheme": "vs-dark",
+				"path": "resources/syntaxes/klang-color-theme.json"
+			}
+		],
+		"languages": [
+			{
+				"id": "klang",
+				"aliases": [
+					"klang"
+				],
+				"extensions": [
+					".klang"
+				],
+				"configuration": "resources/syntaxes/language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "klang",
+				"scopeName": "source.klang",
+				"path": "resources/syntaxes/klang.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "klang",
+				"path": "resources/syntaxes/snippets.json"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",

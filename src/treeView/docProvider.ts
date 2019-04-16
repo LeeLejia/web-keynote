@@ -17,10 +17,6 @@ export default class DocProvider implements vscode.TreeDataProvider<WebKeyNote.D
 
   getTreeItem(element: WebKeyNote.Doc): vscode.TreeItem | Thenable<vscode.TreeItem> {
     const item = new vscode.TreeItem(`${element.title}`, vscode.TreeItemCollapsibleState.None)
-    if (element.describe) {
-      item.description = element.describe
-      item.tooltip = element.describe
-    }
     item.iconPath = this.context.asAbsolutePath(path.join('resources', 'doc.svg'))
     item.command = {
       title: 'Open WebKeyNote',
