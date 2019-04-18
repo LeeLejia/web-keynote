@@ -6,11 +6,12 @@ declare namespace WebKeyNote {
   }
 
   export const enum Command {
-    WEBSLIDE = 'extension.WebKeyNote',
-    OPEN_DOC = 'extension.open_doc',
-    OPEN_SECTION = 'extension.open_section',
-    OPEN_DOC_EDITOR = 'extension.open_doc_editor',
-    OPEN_SECTION_SECTION = 'extension.open_section_editor',
+    WEBSLIDE = 'keynote.WebKeyNote',
+    OPEN_DOC = 'keynote.open_doc',
+    OPEN_SECTION = 'keynote.open_section',
+    OPEN_DOC_EDITOR = 'keynote.open_doc_editor',
+    OPEN_SECTION_SECTION = 'keynote.open_section_editor',
+    VIEW_CODE = 'keynote.view_code'
   }
 
   interface Doc {

@@ -3,11 +3,29 @@
 		"prefix": ["section"],
 		"description": "新建页面",
 		"body": [
-			"section\t$1{",
-			"\ttitle: \"$2\"",	
-			"\tdescribe: \"$3\"",	
-			"\tbackground: \"$4\"",
-			"\t$5",
+			"section\t{",
+			"\ttitle: \"$1\"",	
+			"\tdescribe: \"$2\"",	
+			"\tbackground: \"$3\"",
+			"}"
+		]
+	},
+	"node": {
+		"prefix": "node",
+		"description": "添加节点",
+		"body": [
+			"${1|text,list,img,code,component,view|}"
+		]
+	},
+	"code": {
+		"description": "代码模块",
+		"prefix": ["code"],
+		"body": [
+			"code\t{",
+			"\tlang: \"${1|javascript,cpp,java|}\"",	
+			"\tcontent:\t`",	
+			"\t\t$2",
+			"\t`",
 			"}"
 		]
 	},
@@ -16,20 +34,79 @@
 		"prefix": ["text"],
 		"body": [
 			"text\t{",
-			"\ttype: \"${1|p,h1,h2,h3,h4,h5,h6|}\"",	
+			"\ttype: \"${1|p,h1,h2,h3,h4,h5,h6|}\"",
+			"\tcolor: \"${3: black}\"",
 			"\tcontent: \"$2\"",	
 			"}"
 		]
 	},
+	"view": {
+		"description": "添加容器视图",
+		"prefix": ["view"],
+		"body": [
+			"view\t{",
+			"// 点击跳转的地址",
+			"\tlink: \"${1}\"",
+			"}"
+		]
+	},
+	"img": {
+		"description": "图片",
+		"prefix": ["img"],
+		"body": [
+			"img\t{",
+			"\turl: \"$1\"",
+			"\tsize: \"${2|0,200*200,320*240|}\"",
+			"}"
+		]
+	},
+	"component": {
+		"description": "自定义组件",
+		"prefix": ["component"],
+		"body": [
+			"component\t{",
+			"\tinnerStyle:\t`",
+			"\t\t$1",
+			"\t`",
+			"\tinnerHtml:\t`",
+			"\t\t$2",
+			"\t`"
+		]
+	},
 	"list": {
 		"prefix": "list",
+		"description": "创建列表",
 		"body": [
 			"list\t{",
-			"\tbackground: {",
-			"",
-			"",
-			""
-		],
-		"description": "创建文本"
+			"\ttype: \"${1|simple,block,gallery|}\""
+		]
+	},
+	"class_layout": {
+		"prefix": "clayout",
+		"description": "布局类",
+		"body": [
+			"${1|alignleft,alignright,aligncenter,slide-top,content-left\\,center\\,right,slide-bottom,grid.vertical-align,card-50\\,60\\,70|}"
+		]
+	},
+	"class_backgrounds": {
+		"prefix": "cbackground",
+		"description": "背景类",
+		"body": [
+			"${1|bg-primary...(Corp Colors),bg-black...(General Colors),bg-gradient-(position),background-video,background,background-(position),background.dark,background.light,background.anim|}"
+		]
+	},
+	"class_flexblock": {
+		"prefix": "cflexblock",
+		"description": "布局类",
+		"body": [
+			"${1|flexblock,flexblock.clients,flexblock.features,flexblock.gallery,flexblock.metrics,flexblock.plans,flexblock.specs,flexblock.reasons,flexblock.steps,flexblock.activity|}"
+		]
+	},
+	"class_text": {
+		"prefix": "ctext",
+		"description": "文字类",
+		"body": [
+			"${1|text-landing,text-intro,text-subtitle,text-shadow,text-data,text-context,text-cols,text-label,text-serif (Maitree),text-pull-right\\,left|}"
+		]
 	}
 }

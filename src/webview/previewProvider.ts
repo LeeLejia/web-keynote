@@ -13,7 +13,6 @@ export class PreviewProvider implements Disposable {
         this.initWebView()
     }
 
-
     // 初始化窗口
     private initWebView() {
         if(!this.context) {
@@ -83,7 +82,7 @@ export class PreviewProvider implements Disposable {
         const rootPath = getExtensionFileVscodeResource(this.context, '/')
         const htmlTemplate: string = `
         <link rel="stylesheet" type='text/css' media='all' href="${rootPath}/keynote/static/css/webslides.css">
-        <main role="main">
+        <main role="main" style="zoom: 0.6">
             <article id="webslides" class="vertical">
             </article>
         </main>
@@ -96,7 +95,6 @@ export class PreviewProvider implements Disposable {
             }
             webslides.innerHTML = event.data.text || '<div style="font-size: 40px;text-align: center;">文档为空</div>'
             clearTimeout()
-            clearImmediate()
             clearInterval()
             window.ws = new WebSlides({
                 autoslide: false,

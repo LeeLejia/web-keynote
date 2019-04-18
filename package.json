@@ -25,11 +25,12 @@
 		"idea"
 	],
 	"activationEvents": [
-		"onCommand:extension.WebKeyNote",
-		"onCommand:extension.open_doc",
-		"onCommand:extension.open_section",
-		"onCommand:extension.open_doc_editor",
-		"onCommand:extension.open_section_editor",
+		"onCommand:keynote.WebKeyNote",
+		"onCommand:keynote.open_doc",
+		"onCommand:keynote.open_section",
+		"onCommand:keynote.open_doc_editor",
+		"onCommand:keynote.open_section_editor",
+		"onCommand:keynote.view_code",
 		"onView:WebKeyNote_current_doc",
 		"onView:WebKeyNote_doc_template"
 	],
@@ -37,29 +38,34 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.WebKeyNote",
+				"command": "keynote.WebKeyNote",
 				"category": "WebKeyNote",
-				"title": "新建幻灯片"
+				"title": "keynote"
 			},
 			{
-				"command": "extension.open_doc",
+				"command": "keynote.open_doc",
 				"category": "WebKeyNote",
 				"title": "open doc"
 			},
 			{
-				"command": "extension.open_section",
+				"command": "keynote.open_section",
 				"category": "WebKeyNote",
 				"title": "open section"
 			},
 			{
-				"command": "extension.open_doc_editor",
+				"command": "keynote.open_doc_editor",
 				"category": "WebKeyNote",
 				"title": "edit doc"
 			},
 			{
-				"command": "extension.open_section_editor",
+				"command": "keynote.open_section_editor",
 				"category": "WebKeyNote",
 				"title": "edit section"
+			},
+			{
+				"command": "keynote.view_code",
+				"category": "WebKeyNote",
+				"title": "view code"
 			}
 		],
 		"viewsContainers": {
@@ -114,7 +120,16 @@
 				"language": "klang",
 				"path": "resources/syntaxes/snippets.json"
 			}
-		]
+		],
+		"menus": {
+			"view/item/context": [
+				{
+					"command": "keynote.view_code",
+					"when": "view == WebKeyNote_doc_template",
+					"group": "keynote@1"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
@@ -129,5 +144,9 @@
 		"tslint": "^5.12.1",
 		"@types/node": "^10.12.21",
 		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"@types/fs-extra": "^5.0.5",
+		"fs-extra": "^7.0.1"
 	}
 }

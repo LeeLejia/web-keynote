@@ -11,6 +11,11 @@ class CharTool {
   static isQuotation(c: string): boolean {
     return c === '"'
   }
+
+  static isBackquote(c: string): boolean {
+    return c === '`'
+  }
+
   static isDot(c: string): boolean {
     return c === '.'
   }
@@ -50,6 +55,7 @@ export class TokenStream {
   constructor(str: string) {
     this.str = str
   }
+
   // 是否数字
   isNumber(): boolean {
     let start = this.offset
@@ -79,19 +85,26 @@ export class TokenStream {
   isString(): boolean {
     let start = this.offset
     const chr = this.str[start]
-    const isquotation = CharTool.isQuotation(chr)
+    let border = '"'
+    let isquotation = CharTool.isQuotation(chr)
     if (!isquotation) {
-      return false
-    }
+      isquotation = CharTool.isBackquote(chr)
+      if(!isquotation) {
+        return false
+      }
+      border = '`'
+    } 
+
     let flag = false
     for (this.offset++; this.offset < this.str.length; this.offset++) {
       let chr = this.str[this.offset]
-      if (CharTool.isQuotation(chr) && !flag) {
+      const matchChr = border === '"'?CharTool.isQuotation(chr):CharTool.isBackquote(chr)
+      if (matchChr && !flag) {
         this.offset++
         const slc = this.str.slice(start + 1, this.offset - 1)
         this.tokens.push({
           type: WebKeyNote.TokenType.String,
-          val: slc.replace('\"', '"')
+          val: border === '"'?slc.replace('\"', '"'):slc.replace('\`', '`')
         })
         return true
       }
@@ -99,6 +112,9 @@ export class TokenStream {
         flag = !flag
       } else {
         flag = false
+      }
+      if(border === '"' && chr === '\n') {
+        throw new Error("多行字符串请使用反引号 `` 包含")
       }
     }
     return false

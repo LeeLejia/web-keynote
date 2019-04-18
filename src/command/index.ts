@@ -4,12 +4,13 @@ import { PreviewProvider, previewProvider } from '../webview/previewProvider'
 import { SyntaxParser } from '../syntaxes-complier/syntax'
 import { Doc } from '../model/Doc'
 import { Section } from '../model/Section'
+import * as os from 'os'
+import * as fse from "fs-extra"
 
 
 export function init(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(WebKeyNote.Command.WEBSLIDE, () => {
-      vscode.window.showInformationMessage('狗子!')
     }),
     // 打开文档
     vscode.commands.registerCommand(WebKeyNote.Command.OPEN_DOC, (docName: string, docStr: string) => {
@@ -27,7 +28,7 @@ export function init(context: vscode.ExtensionContext) {
           previewProvider.preview(doc)
         }catch(error) {
           console.error(error)
-          vscode.window.showInformationMessage(error)
+          vscode.window.showInformationMessage('[编译出错] ' +  error.message)
           return
         }
       } else {
@@ -56,12 +57,20 @@ export function init(context: vscode.ExtensionContext) {
           previewProvider.preview(section)
         }catch(error) {
           console.error(error)
-          vscode.window.showInformationMessage(error)
+          vscode.window.showInformationMessage('[编译出错] ' +  error.message)
           return
         }
       } else {
         previewProvider.preview(section)
       }
+    }),
+    // 预览模版代码
+    vscode.commands.registerCommand(WebKeyNote.Command.VIEW_CODE, async doc=>{
+      await fse.ensureDir(os.tmpdir())
+      const filePath = `${os.tmpdir()}/模版.klang`
+      fse.writeFile(filePath, doc.content)
+      vscode.commands.executeCommand(WebKeyNote.Command.OPEN_DOC, doc.title + ' [模版]', doc.content)
+      await vscode.window.showTextDocument(vscode.Uri.file(filePath), { viewColumn: vscode.ViewColumn.One,preview: false })
     }),
     // 编辑文档
     vscode.commands.registerCommand(WebKeyNote.Command.OPEN_DOC_EDITOR, callback=>{

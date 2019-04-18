@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import DocProvider from './docProvider'
 import SectionProvider from './sectionProvider'
+import * as exampleList from './doc-simple.json'
 
 export function init(context: vscode.ExtensionContext) {
   const templateDocsProvider: DocProvider = new DocProvider(context)
@@ -9,6 +10,7 @@ export function init(context: vscode.ExtensionContext) {
   context.globalState.update('templateDocsProvider', templateDocsProvider)
   context.subscriptions.push(
     vscode.window.createTreeView("WebKeyNote_current_doc", { treeDataProvider: sectionProvider, showCollapseAll: true }),
-    vscode.window.createTreeView("WebKeyNote_doc_template", { treeDataProvider: templateDocsProvider, showCollapseAll: false }),
+    vscode.window.createTreeView("WebKeyNote_doc_template", { treeDataProvider: templateDocsProvider, showCollapseAll: true }),
   )
+  templateDocsProvider.setData(exampleList)
 }

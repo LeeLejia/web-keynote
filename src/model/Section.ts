@@ -8,8 +8,6 @@ export class Section implements WebKeyNote.Section {
 
   constructor(sectionNode: WebKeyNote.Node, index?: number) {
     this.index = index || 0
-    // this.title = attributes['title'] || 'WebKeyNote Page' 
-    // this.describe = attributes['describe'] || '' 
     this.text = this.parseSection(sectionNode)
   }
   // 解析节点
@@ -44,9 +42,11 @@ export class Section implements WebKeyNote.Section {
     const content = `
       <section class='${section.classList.join(' ')}'>
         ${background}
-        ${section.childNodes.map(this.parseNode)}
-        ${innerStyle}
-        ${innerHtml}
+        <div class="wrap">
+          ${section.childNodes.map(this.parseNode).join('\n')}
+          ${innerStyle}
+          ${innerHtml}
+        </div>
       </section>
     `
     return content

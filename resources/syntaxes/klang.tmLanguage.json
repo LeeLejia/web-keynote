@@ -21,7 +21,7 @@
 			"comment": "节点属性",
 			"patterns": [
 				{
-					"begin": "\\.([a-z_]+)",
+					"begin": "\\.([\\w_\\-]+)",
 					"end": "",
 					"name": "klang.attribute"
 				}
@@ -95,7 +95,7 @@
 		},
 		"section-node": {
 			"comment": "页面节点",
-			"begin": "^\\s*(text|list|img)\\s*",
+			"begin": "^\\s*(text|list|img|code|component|view)\\s*",
 			"end": "\\}",
 			"beginCaptures": {
 				"1": {
@@ -232,6 +232,20 @@
 						}
 					},
 					"end": ""
+				},{
+					"begin": "(`)(\n|\\\\`|[^`])*",
+					"name": "klang.string",
+					"beginCaptures": {
+						"1": {
+							"name": "klang.string.quo"
+						}
+					},
+					"end": "(`)",
+					"endCaptures": {
+						"1": {
+							"name": "klang.string.quo"
+						}
+					}
 				}
 			]
 		},
